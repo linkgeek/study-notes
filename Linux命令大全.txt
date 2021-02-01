@@ -11,20 +11,58 @@ hall-main.stevengame.com/
 
 《Git》
 
+# 将当前目录变为git管理仓库
+git init
+
+# github 将当前仓库与远程仓库关联
 git remote add origin git@github.com:linkgeek/hello-node.git
+
+# 推送
 git push origin master
+git push -u origin master
+
+
 git checkout --track origin/develop
+
+# 检出远程分支到本地
+git checkout origin/xx
+
+# 检出新分支
+git checkout -b new old
+
+# 检出单文件
+git checkout -p develop src/views/bslog/shoppingrecord.vue
+
+# 提交单文件
+git commit -o src/views/bslog/shoppingrecord.vue -m xx
+
+
+
+# 删除分支
+git branch -D 分支名
+
 
 # 标签：
 git tag -a v0.0.1 -m "初版"
 
-回退流程：
+删除标签：
+本地：git tag -d tagName
+远程：git push origin :refs/tags/tagName  
+git fetch -p
+
+# 回退流程：
 1. git reflog
 2. git reset --hard f82cfd2
 
 # git flow
 git flow feature start verTag
 git flow feature finish verTag
+
+
+1. git config --global merge.ours.driver true
+echo 'index.php merge=ours' >> .gitattributes
+git add .gitattributes
+git commit -m 'chore: Preserve index.php during merges'  //只是为了commit代码，可以
 
 
 《Linux》
@@ -36,7 +74,10 @@ find /etc/nginx/conf.d -type f | xargs grep 'public-dev.stevengame.com'
 history |grep "nginx"
 
 # 端口
-netstat -tpnl |grep 9002
+netstat -anop | grep 进程号(PID)
+netstat -tpnl | grep 9002
+lsof -i:80
+
 
 《Nginx》
 
@@ -53,6 +94,9 @@ netstat -tpnl |grep 9002
 
 《MySQL》
 
+DATE_FORMAT('2020-10-05 15:55:55', "%Y-%m")
+FROM_UNIXTIME(1606796316, "%Y-%m-%d %H:%i:%s")
+
 mysqlbinlog  --database=recharge --start-datetime='2020-12-15 12:35:00' --stop-datetime='2020-12-15 12:40:01'  --base64-output=DECODE-ROWS -v mysql-bin.000023 |more
 
 
@@ -63,3 +107,34 @@ mysqlbinlog  --database=recharge --start-datetime='2020-12-15 12:35:00' --stop-d
 2、Ctrl + H 调出替换栏
 3、在 Find 栏中输入(是同时按这三个键) Ctrl + Shift + Enter ， Replace 栏不填
 4、按Replace All
+
+
+
+
+
+《抓包》
+工具：Wireshark、Fiddler
+
+## tcpdump
+yum -y install tcpdump
+tcpdump -n -S -i eth0 host www.baidu.com and tcp port 80
+
+
+《接口测试 》
+工具：eolinker 、apipost
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
