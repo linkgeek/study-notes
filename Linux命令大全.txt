@@ -21,6 +21,8 @@ git remote add origin git@github.com:linkgeek/hello-node.git
 git push origin master
 git push -u origin master
 
+# ssh key
+ssh-keygen -t rsa -C "hezhan_web@163.com"
 
 git checkout --track origin/develop
 
